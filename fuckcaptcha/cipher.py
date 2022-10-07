@@ -1,10 +1,10 @@
+from Crypto.Cipher import AES
+
 import base64
 import hashlib
 import json
 import random
 import string
-
-from Crypto.Cipher import AES
 
 
 def encrypt(data, key):
@@ -17,12 +17,15 @@ def encrypt(data, key):
         salted += dx
 
     key = salted[:32]
-    iv = salted[32:32 + 16]
+    iv = salted[32 : 32 + 16]
     aes = AES.new(key, AES.MODE_CBC, iv)
 
-    encrypted_data = {"ct": base64.b64encode(aes.encrypt(data.encode())).decode("utf-8"), "iv": iv.hex(),
-                      "s": salt.hex()}
-    return json.dumps(encrypted_data, separators=(',', ':'))
+    encrypted_data = {
+        "ct": base64.b64encode(aes.encrypt(data.encode())).decode("utf-8"),
+        "iv": iv.hex(),
+        "s": salt.hex(),
+    }
+    return json.dumps(encrypted_data, separators=(",", ":"))
 
 
 def decrypt(data, key):
