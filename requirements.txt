@@ -1,5 +1,9 @@
-httpx~=0.23.0
-httpx[brotli]
-httpx[http2]
-httpx[socks]
-pycryptodome
+anyio==3.6.1
+certifi==2022.9.24
+h11==0.12.0
+httpcore==0.15.0
+httpx==0.23.0
+idna==3.4
+pycryptodome==3.15.0
+rfc3986==1.5.0
+sniffio==1.3.0
